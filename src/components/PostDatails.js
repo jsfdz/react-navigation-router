@@ -6,7 +6,7 @@ export const PostDetails = ({ posts }) => {
     let { id } = useParams()
 
     return (
-        <>
+        <div className="post-body">
             { posts[id - 1] ?
                 <>
                     <h2>{posts[id - 1].title}</h2>
@@ -19,7 +19,7 @@ export const PostDetails = ({ posts }) => {
                     <Link to='/'>📑 Back to List</Link>
                 </>
             }
-        </>
+        </div>
     )
 
 }
