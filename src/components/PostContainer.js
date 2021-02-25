@@ -2,20 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { PostList } from './PostList'
 import { PostDetails } from './PostDatails'
+import { get } from '../services/Api'
 
 export const PostsContainer = () => {
 
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        getPosts()
+        get().then(response => {
+            setPosts(response.data)
+        })
     }, [])
-
-    const getPosts = async () => {
-        await fetch('https://bender-blog.herokuapp.com/posts')
-            .then(response => response.ok ? response.json() : Promise.reject(response))
-            .then(data => setPosts(data))
-    }
 
     return (
         <Router>
